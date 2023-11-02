@@ -7,35 +7,52 @@ variable "Subnet"{
 }
 
 variable "AccessKeyID"{
-    default = "AKIARP4KQO6STDJEB3H2"
+    default = "AKIAYPRFPOE2USRXBBM2"
 }
 
 variable "SecretAccessKey"{
-    default = "kobft5WR99ug1IjOEIw/xI010b9R3Iy4Nxho9cFF"
+    default = "ugBIm7AhFyrJXNMdn5Xf4tYcJEfBQ+IbaWxiwy9A"
 }
 
 variable "Blue_WebServer-AMID"{
-    default = "ami-0dbc3d7bc646e8516"
+    default = "ami-01bc990364452ab3e"
 }
 
 variable "Green_WebServer-AMID"{
-    default = "ami-0dbc3d7bc646e8516"
+    default = "ami-01bc990364452ab3e"
 }
 
-
-output First-Web-server-1a{
-    value = [aws_instance.First-Web-server-1a.public_ip,aws_instance.First-Web-server-1a.private_ip]
+variable "Swing_percentage_Blue" {
+    default = 50
+  }
+  
+  variable "Swing_percentage_Green" {
+    default = 50
+  }
+output Blue-1{
+    value = aws_instance.First-Web-server-1a.public_ip
 }
 
-output First-Web-server-1b {
+output Green-1 {
     value = aws_instance.First-Web-server-1b.public_ip
 }
 
-output Second-Web-server-1a {
+output Blue-2 {
     value = aws_instance.Second-Web-server-1a.public_ip
 }
 
 
-output Second-Web-server-1b{
+output Green-2{
     value = aws_instance.Second-Web-server-1b.public_ip
+}
+
+output ALB{
+    value = aws_lb.ALB.dns_name
+   
+}
+
+output Weight{
+
+    value = aws_lb_listener.ALBLISTEN.default_action
+   
 }

@@ -201,12 +201,12 @@ resource "aws_instance" "First-Web-server-1b" {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>Hello World from Green-1</h1>" > /var/www/html/index.html
   EOF
       
 
   tags ={
-  Name="First-Web-Server-1b"
+  Name="Green-1"
 }
 }
 resource "aws_instance" "First-Web-server-1a" {
@@ -225,12 +225,12 @@ resource "aws_instance" "First-Web-server-1a" {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>Hello World from Blue-1</h1>" > /var/www/html/index.html
   EOF
       
 
   tags ={
-  Name="First-Web-Server-1a"
+  Name="Blue-1"
 }
 }
 
@@ -250,12 +250,12 @@ resource "aws_instance" "Second-Web-server-1a" {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>Hello World from Blue-2</h1>" > /var/www/html/index.html
   EOF
       
 
   tags ={
-  Name="Second-Web-Server-1a"
+  Name="Blue-2"
 }
 }
 
@@ -274,12 +274,12 @@ resource "aws_instance" "Second-Web-server-1b" {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>Hello World from Green2</h1>" > /var/www/html/index.html
   EOF
       
 
   tags ={
-  Name="Second-Web-Server-1b"
+  Name="Green-2"
 }
 }
 
@@ -398,12 +398,12 @@ default_action   {
     forward {
       target_group {
         arn    = aws_lb_target_group.my_app_eg1.arn
-        weight = 50
+        weight = var.Swing_percentage_Blue
       }
 
       target_group {
         arn    = aws_lb_target_group.my_app_eg2.arn
-        weight = 50
+        weight = var.Swing_percentage_Green
       }
 
       stickiness {
